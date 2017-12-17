@@ -1,0 +1,41 @@
+html, body {
+    /*height: 100%;*/
+    font-size: 14px;
+}
+
+.fullheight {
+    height: 100%;
+}
+
+.side {
+}
+
+.selectbox, .sliderbox, .textbox {
+    padding: 2px 10px;
+}
+
+.textbox {
+    margin-top: 20px
+}
+
+.tableheader {
+    margin-top: 15px;
+    padding: 5px 15px 5px 0px;
+    background-color: #eeeeee;
+}
+
+.tablebody {
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding-right: 10px;
+}
+
+.address {
+    font-size: 12px;
+}
+
+.shaded {
+    background-color: #f7f7f7;
+}
+

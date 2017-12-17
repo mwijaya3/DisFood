@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Food Bank Analytics</title>
+
+    <!-- Bootstrap CSS for styling HTML web page -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
+    <!-- Links to CSS file -->
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Load all neccessary JS libraries -->
+    <script type="text/javascript" src="lib/d3.v3.min.js"></script>
+    <script type="text/javascript" src="lib/d3-queue.v3.min.js"></script>
+    <script type="text/javascript" src="lib/d3.tip.v0.6.3.js"></script>
+    <script type="text/javascript" src="lib/topojson.v1.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+    async defer></script>
+    <!--<script src="http://maps.google.com/maps/api/js?sensor=true"></script>-->
+
+    <!-- jQuery library for analytics pane -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col-fixed-280">
+
+          <div id="titleDiv">
+            <h3>DisFood</h3>
+            <p>Food Bank Analytics -<br>Improving Chronic Disease Control</p>
+          </div>
+
+          <!-- Select button to choose States -->
+          <div class="sidebarDiv">
+            <label>Zoom to State:</label>
+
+            <div class="select chooseState">
+              <select id="mapSelect" onchange="changeState()">
+              </select>
+              <div class="select_arrow">
+              </div>
+            </div>
+
+
+
+          </div>
+
+          <!-- Buttons to toggle disease visiblity -->
+          <div class="sidebarDiv">
+            <label>Select Layers:</label><br>
+            <input type="button" class="btn" id="clusterBtn" value="DisFood Clusters" onclick="clusterOverlay.toggle();"></input><br>
+            <input type="button" class="btn" id="riskBtn" value="Risk" onclick="riskOverlay.toggle();"></input><br>
+            <input type="button" class="btn" id="insecurityBtn" value="Food Insecurity" onclick="insecurityOverlay.toggle();"></input><br>
+            <input type="button" class="btn" id="diabetesBtn" value="Diabetes" onclick="diabetesOverlay.toggle();"></input><br>
+            <input type="button" class="btn" id="obesityBtn" value="Obesity" onclick="obesityOverlay.toggle();"></input><br>
+            <input type="button" class="btn" id="pantriesBtn" value="Food Pantries" onclick="togglePantries();"></input>
+          </div>
+
+
+
+          <div class="sidebarDiv" id="locationSideDiv">
+            <button class="btn" id="locationBtn" onclick="getLocation()">Find Food Pantries</button>
+            <p id="demo"></p>
+
+          </div>
+
+          <div class="sidebarDiv" id="supermarketSideDiv">
+            <button class="btn" id="supermarketBtn" onclick="supermarketPage()">DisFood Ranking</button>
+
+          </div>
+
+
+        </div> <!-- Close left column -->
+
+
+        <div class="col-md-12 col-offset-280">
+          <div id="map"></div>
+        </div> <!-- Close right column -->
+
+      </div> <!-- Close row -->
+    </div> <!-- Close container -->
+
+
+    <!-- div to contain all additional analytics information -->
+    <div class="hidden">
+      <p id="analyticsHeader">Compare Georgia Counties</p>
+      <select class="select lineDropdown" id="lineDropdown1" onchange="updateLine1()"></select>
+      <select class="select lineDropdown" id="lineDropdown2" onchange="updateLine2()"></select>
+
+
+      <button type="button" id="sidebarCollapse" class="navbar-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Button to toggle additional analytics pane -->
+    <a id="toggleSidebar" href="#" class="btn"><b>></b></a>
+
+
+
+    <!-- Link to main JS file -->
+    <script type="text/javascript" src="index.js"></script>
+
+  </body>
+</html>

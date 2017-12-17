@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/site.css">
+    <link rel="stylesheet" href="static/bootstrap.min.css">
+    <script src="static/maps.js"></script>
+<!-- map api js is now loaded dynamically with key from file in maps.js -->
+<!--     <script src="https://maps.googleapis.com/maps/api/js?key=____&callback=______" async defer></script> -->
+    <script src="static/angular.min.js"></script>
+    <script src="static/angularApp.js"></script>
+
+    <title> DisFood Ranking </title>
+  </head>
+
+  <body  ng-app="rankingApp" ng-controller="RankingController" onload=mapUtility.initGoogleApi()>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6 side">
+
+
+          <div>
+            <button class="btn" id="mainBtn" onclick="mainPage()">Go Back</button>
+          </div>
+
+          <div class="row selectbox align-items-center">
+          Order by &nbsp;
+              <select class="custom-select" ng-model="orderby" ng-change="updateRanking()">
+                <option value="pop_filtered">Selected Population</option>
+                <option value="dis_avg_filtered">Average distance to nearest supermarket</option>
+                <option value="dur_avg_filtered">Average travel time to nearest supermarket</option>
+                <option value="population_reduced">Recommended place for new supermarket (population with reduced travel time)</option>
+                <option value="duration_reduced">Recommended place for new supermarket (total reduced travel time)</option>
+              </select>
+          </div>
+
+          <div class="row selectbox align-items-center">
+          Filter population &nbsp;
+              <select class="custom-select" ng-model="filterby" ng-change="updateRanking()">
+                <option value="pop_2010" selected>All</option>
+                <option value="pop_low_inc">Low income</option>
+                <option value="pop_no_car_est">No access to vehicle (estimated)</option>
+                <option value="pop_asian">Asian</option>
+                <option value="pop_black">Black</option>
+                <option value="pop_hispanic">Hispanic</option>
+                <option value="pop_white">White</option>
+              </select>
+          </div>
+
+          <div class="row sliderbox align-items-center">
+            Only consider urban population more than   &nbsp;
+            <input type="range" min="0" max="20" ng-model="urban_min" ng-change="updateRanking()">
+            &nbsp; {{urban_min}} miles away from supermarket
+          </div>
+          <div class="row sliderbox align-items-center">
+            Only consider rural population more than   &nbsp;
+            <input type="range" min="0" max="30" ng-model="rural_min" ng-change="updateRanking()">
+            &nbsp; {{rural_min}} miles away from supermarket
+          </div>
+
+          <div class="row textbox align-items-center">
+            Showing top &nbsp;
+            <input type="range" min="10" max="50" ng-model="resultsShown" ng-change="updateRanking()">
+            &nbsp; {{resultsShown}} results
+          </div>
+
+          <div class="tableheader">
+            <div class="row align-items-center fullheight">
+              <div class="col-6">
+                {{isCountyReq() ? 'County' : 'Tract to build a new supermarket'}}
+              </div>
+              <div class="col text-right">
+                {{utility.getAlias()}}
+              </div>
+              <div class="col text-right">
+                Total Popul.
+              </div>
+            </div>
+          </div>
+
+          <div class="tablebody">
+            <div class="row" ng-repeat="entry in filteredData | limitTo : resultsShown" ng-class="selected_geoid == entry.geoid ? 'shaded' : 'plain'">
+              <div class="col-6" ng-if="isCountyReq()">
+                <a href="" ng-click="events.highlightCounty(entry.geoid)">{{entry.county}}</a>
+              </div>
+              <div class="col-6" ng-if="!isCountyReq()">
+                Tract {{entry.geoid}} in {{entry.county}} <br>
+                <a class="address" href="" ng-click="events.addMarker(entry)">Near: {{entry.address.slice(0,-5)}}</a>
+              </div>
+              <div class="col text-right">
+                {{utility.repr(entry[orderby], orderby)}}
+              </div>
+              <div class="col text-right">
+                {{entry.pop_2010}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="map" class="col">Map here</div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,306 @@
+html, body, .row {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.col-fixed-280{
+    width: 280px;
+    background: white;
+    position: absolute;
+    height: 100%;
+    padding: 20px;
+    z-index: 4;
+    border-right: 1px solid black;
+}
+
+.col-offset-280{
+    padding-left: 280px;
+    padding-right: 0;
+    width: 100%;
+    z-index:0;
+}
+
+#titleDiv {
+    text-align: center;
+    font-size: 14px;
+    font-family: "Georgia", "Times New Roman", Times, serif;
+}
+
+
+.sidebarDiv {
+    border: 1px solid #d0d0d0;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+#locationSideDiv {
+    font-size: 12px;
+}
+
+#sidebarCollapse {
+    width: 40px;
+    height: 40px;
+    background: #f5f5f5;
+    margin-left: 630px;
+    position: absolute;
+}
+
+#sidebarCollapse span {
+    width: 80%;
+    height: 2px;
+    margin: 0 auto;
+    display: block;
+    background: #555;
+}
+
+#sidebarCollapse span:first-of-type {
+    /* rotate first one */
+    transform: rotate(45deg) translate(2px, 2px);
+}
+#sidebarCollapse span:nth-of-type(2) {
+    /* second one is not visible */
+    opacity: 0;
+}
+#sidebarCollapse span:last-of-type {
+    /* rotate third one */
+    transform: rotate(-45deg) translate(1px, -1px);
+}
+
+
+
+
+.indivState {
+    fill: grey;
+    opacity: 0;
+    stroke: none;
+    stroke-linejoin: bevel;
+}
+
+.indivStateBorder {
+    fill-opacity: 0.00001;
+    fill: white;
+    stroke: black;
+    stroke-width: 1;
+    stroke-linejoin: bevel;
+}
+
+.indivStateBorder:hover {
+    fill-opacity: 0.3;
+    fill: red;
+}
+
+.indivCountyBorder {
+    fill-opacity: 0;
+    stroke: grey;
+    stroke-width: 0.5;
+    stroke-linejoin: bevel;
+}
+.indivCountyBorder:hover {
+    stroke-width: 3;
+    stroke: black;
+}
+
+.indivCounty, .clusterCounty {
+    fill-opacity: 0.5;
+    stroke: grey;
+    stroke-width: 1;
+    stroke-linejoin: bevel;
+}
+
+.riskCounty {
+    fill-opacity: 0.6;
+}
+
+.diabetesLayer, .diabetesLayer svg, .obesityLayer, .obesityLayer svg, .insecurityLayer, .insecurityLayer svg {
+    position: absolute;
+}
+
+.insecurityCircle {
+    fill: black;
+    opacity: 0.4;
+}
+
+.diabetesCircle {
+    fill: red;
+    opacity: 0.4;
+}
+
+.obesityCircle {
+    fill: blue;
+    opacity: 0.4;
+}
+
+.d3-tip {
+    background: black;
+    color: white;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: small;
+}
+
+#toggleSidebar {
+    float: left;
+    background: white;
+    border-radius: 4px;
+    padding: 4px;
+    padding-left: 12px;
+    position: absolute;
+    margin-left: 270px;
+    margin-top: 20px;
+    z-index: 2;
+}
+
+.hidden {
+    width: 680px;
+    background: white;
+    opacity: 0.95;
+    position: absolute;
+    height: 100%;
+    padding: 5px;
+    margin-left: -400px;
+    z-index: 3;
+}
+
+#analyticsHeader {
+    position: absolute;
+    text-anchor: end;
+    margin-left: 150px;
+    font-size: 23px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+.line {
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+.x.axisLabel {
+    text-anchor: end;
+    dominant-baseline: middle;
+}
+
+.y.axisLabel {
+    text-anchor: middle;
+}
+
+.axisLabel {
+    font-weight: bold;
+}
+
+
+.lineDropdown {
+    position: absolute;
+}
+
+#lineDropdown1 {
+    margin-left: 80px;
+    margin-top: 70px;
+}
+
+#lineDropdown2 {
+    margin-left: 380px;
+    margin-top: 70px;
+}
+
+label {
+    margin-bottom: 1px;
+}
+
+
+
+.select.chooseState {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    width: 100%;
+}
+.select select {
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    padding: 5px 20px;
+    outline: 0;
+    border: 2px hidden #000000;
+    border-radius: 0px;
+    background: #F5F5F5;
+    color: #000000;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.select select::-ms-expand {
+    display: none;
+}
+.select select:hover,
+.select select:focus {
+    color: #000000;
+    background: #e3e3e3;
+}
+.select select:disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+.select_arrow {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    border-style: solid;
+    border-width: 8px 5px 0px 5px;
+    border-color: #7B7B7B transparent transparent transparent;
+}
+.select select:hover ~ .select_arrow,
+.select select:focus ~ .select_arrow {
+    border-top-color: #000000;
+}
+.select select:disabled ~ .select_arrow {
+    border-top-color: #CCCCCC;
+}
+
+
+.btn {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  color: #000000;
+  font-size: 13px;
+  background: #F5F5F5;
+  padding: 3px 15px 3px 15px;
+  text-decoration: none;
+  margin: 2px;
+}
+
+.btn:hover {
+  background: #e3e3e3;
+  text-decoration: none;
+}
